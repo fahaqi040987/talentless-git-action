@@ -61,7 +61,7 @@ if (args.personalCalendarLink?.length) {
 if (!events.length) {
   try {
     console.log(`Performing ${args.phase} ...`);
-    await execute({
+    const result = await execute({
       phase: args.phase as Phase,
       email: args.email,
       password: args.password,
@@ -70,9 +70,10 @@ if (!events.length) {
       checkTag: args.checkTag,
     });
     console.log(`${args.phase} executed successfully`);
+    console.log("Execution result:", result); // Log response result
     process.exit(0);
   } catch (err) {
-    console.error(err);
+    console.error("Execution failed with error:", err); // Log error details
     process.exit(1);
   }
 } else {
